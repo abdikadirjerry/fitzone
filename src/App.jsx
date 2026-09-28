@@ -1,7 +1,9 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import MembershipModal from "./components/MembershipModal";
+import AuthModal from "./components/AuthModal";
 import { MembershipProvider } from "./context/MembershipContext";
+import { AuthProvider } from "./context/AuthContext";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Programs from "./sections/Programs";
@@ -14,25 +16,29 @@ import "./App.css";
 
 function App() {
   return (
-    <MembershipProvider>
-      <div className="app">
-        <Navbar />
+    <AuthProvider>
+      <MembershipProvider>
+        <div className="app">
+          <Navbar />
 
-        <main>
-          <Hero />
-          <About />
-          <Programs />
-          <Trainers />
-          <Membership />
-          <Schedule />
-          <Testimonials />
-          <Contact />
-        </main>
+          <main>
+            <Hero />
+            <About />
+            <Programs />
+            <Trainers />
+            <Membership />
+            <Schedule />
+            <Testimonials />
+            <Contact />
+          </main>
 
-        <Footer />
-        <MembershipModal />
-      </div>
-    </MembershipProvider>
+          <Footer />
+
+          <MembershipModal />
+          <AuthModal />
+        </div>
+      </MembershipProvider>
+    </AuthProvider>
   );
 }
 
