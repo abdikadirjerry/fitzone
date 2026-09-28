@@ -1,4 +1,7 @@
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import MembershipModal from "./components/MembershipModal";
+import { MembershipProvider } from "./context/MembershipContext";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Programs from "./sections/Programs";
@@ -11,20 +14,25 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="app">
-      <Navbar />
+    <MembershipProvider>
+      <div className="app">
+        <Navbar />
 
-      <main>
-        <Hero />
-        <About />
-        <Programs />
-        <Trainers />
-        <Membership />
-        <Schedule />
-        <Testimonials />
-        <Contact />
-      </main>
-    </div>
+        <main>
+          <Hero />
+          <About />
+          <Programs />
+          <Trainers />
+          <Membership />
+          <Schedule />
+          <Testimonials />
+          <Contact />
+        </main>
+
+        <Footer />
+        <MembershipModal />
+      </div>
+    </MembershipProvider>
   );
 }
 
