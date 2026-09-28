@@ -1,10 +1,13 @@
+import Navbar from "./components/Navbar";
 import "./App.css";
 
 function App() {
   return (
     <div className="app">
+      <Navbar />
+
       <main>
-        <section className="page-placeholder">
+        <section className="page-placeholder" id="home">
           <div>
             <span className="section-label">Welcome to FitZone</span>
             <h1>Build Your Strength</h1>
