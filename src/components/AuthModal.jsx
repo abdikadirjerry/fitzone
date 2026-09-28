@@ -36,11 +36,14 @@ function AuthModal() {
       setMode(requestedMode === "register" ? "register" : "login");
       setMessage("");
       setIsSuccess(false);
+      setShowPassword(false);
+
       setFormData({
         name: "",
         email: "",
         password: "",
       });
+
       setIsOpen(true);
     };
 
@@ -73,6 +76,8 @@ function AuthModal() {
     setMode(nextMode);
     setMessage("");
     setIsSuccess(false);
+    setShowPassword(false);
+
     setFormData({
       name: "",
       email: formData.email,
@@ -106,11 +111,16 @@ function AuthModal() {
     }
 
     setIsSuccess(true);
+
     setMessage(
       mode === "login"
         ? "You are now signed in to your FitZone account."
         : "Your FitZone account has been created successfully.",
     );
+  };
+
+  const handleContinue = () => {
+    closeModal();
   };
 
   if (!isOpen) {
@@ -168,7 +178,7 @@ function AuthModal() {
             <button
               type="button"
               className="auth-modal__button"
-              onClick={closeModal}
+              onClick={handleContinue}
             >
               Continue
               <ArrowRight size={18} />
