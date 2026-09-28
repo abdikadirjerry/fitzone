@@ -6,6 +6,7 @@ import Trainers from "./sections/Trainers";
 import Membership from "./sections/Membership";
 import Schedule from "./sections/Schedule";
 import Testimonials from "./sections/Testimonials";
+import Contact from "./sections/Contact";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Membership />
         <Schedule />
         <Testimonials />
+        <Contact />
       </main>
     </div>
   );
