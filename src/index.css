@@ -1,41 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap");
 
 :root {
-  font-family: "DM Sans", sans-serif;
-  color: #f5f5f5;
-  background: #101010;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  /* Brand colors */
-  --color-primary: #c6ff00;
-  --color-primary-hover: #b5e600;
   --color-background: #101010;
   --color-surface: #191919;
   --color-surface-light: #222222;
-  --color-border: #303030;
+  --color-primary: #c6ff00;
+  --color-primary-dark: #9dcc00;
   --color-text: #f5f5f5;
-  --color-text-muted: #a3a3a3;
-  --color-white: #ffffff;
-  --color-danger: #ff5252;
-  --color-success: #36d399;
+  --color-text-muted: #999999;
+  --color-border: #303030;
 
-  /* Typography */
-  --font-body: "DM Sans", sans-serif;
-  --font-heading: "Oswald", sans-serif;
-
-  /* Layout */
   --container-width: 1200px;
   --header-height: 80px;
   --section-spacing: 100px;
 
-  /* Effects */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --transition: 0.3s ease;
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 16px;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  font-family: "DM Sans", sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 * {
@@ -46,16 +37,17 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-height);
 }
 
 body {
   min-width: 320px;
   min-height: 100vh;
-  font-family: var(--font-body);
-  background-color: var(--color-background);
+  margin: 0;
+  background: var(--color-background);
   color: var(--color-text);
+  font-family: "DM Sans", sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 body,
@@ -63,14 +55,15 @@ button,
 input,
 textarea,
 select {
-  font-family: var(--font-body);
+  font-family: inherit;
 }
 
 button,
 input,
 textarea,
 select {
-  font-size: inherit;
+  border: 0;
+  outline: 0;
 }
 
 button {
@@ -107,57 +100,82 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: "Oswald", sans-serif;
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 
 ::selection {
-  background-color: var(--color-primary);
   color: var(--color-background);
+  background: var(--color-primary);
 }
 
 .container {
-  width: min(100% - 40px, var(--container-width));
-  margin-inline: auto;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .section {
-  padding-block: var(--section-spacing);
+  padding: var(--section-spacing) 0;
 }
 
 .section-label {
   display: inline-block;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: var(--color-primary);
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 2px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
   text-transform: uppercase;
 }
 
 .section-title {
-  max-width: 750px;
-  font-size: clamp(2.25rem, 5vw, 4rem);
-  text-transform: uppercase;
+  max-width: 800px;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: -0.02em;
+}
+
+.section-title span {
+  display: block;
+  color: var(--color-primary);
 }
 
 .section-description {
-  max-width: 600px;
-  margin-top: 18px;
+  max-width: 560px;
   color: var(--color-text-muted);
   font-size: 1rem;
   line-height: 1.8;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   :root {
-    --header-height: 70px;
+    --section-spacing: 80px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
     --section-spacing: 70px;
   }
 
   .container {
-    width: min(100% - 32px, var(--container-width));
+    padding: 0 16px;
+  }
+
+  .section-label {
+    margin-bottom: 12px;
+  }
+
+  .section-description {
+    font-size: 0.95rem;
   }
 }
 
@@ -166,8 +184,8 @@ h6 {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }
