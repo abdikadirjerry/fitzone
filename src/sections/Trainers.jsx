@@ -1,18 +1,17 @@
-import { ArrowUpRight, Instagram, Linkedin, Trophy } from "lucide-react";
+import { ArrowUpRight, Trophy } from "lucide-react";
+import SocialLinks from "../components/SocialLinks";
 import "./Trainers.css";
 
 const trainers = [
   {
-    id: 1,
     name: "Marcus Johnson",
     role: "Strength & Conditioning",
     experience: "12 Years Experience",
     specialty: "Strength Training",
     image:
-      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=85",
   },
   {
-    id: 2,
     name: "Sophia Williams",
     role: "Fitness & Weight Loss",
     experience: "9 Years Experience",
@@ -21,87 +20,70 @@ const trainers = [
       "https://images.unsplash.com/photo-1594381898411-846e7d193883?auto=format&fit=crop&w=900&q=85",
   },
   {
-    id: 3,
     name: "Daniel Carter",
     role: "Performance Coach",
     experience: "10 Years Experience",
     specialty: "Athletic Performance",
     image:
-      "https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85",
   },
   {
-    id: 4,
     name: "Emma Rodriguez",
     role: "Mobility & Wellness",
     experience: "8 Years Experience",
     specialty: "Mobility & Recovery",
     image:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1548690312-e3b507d8c110?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
 function Trainers() {
   return (
     <section className="trainers section" id="trainers">
-      <div className="trainers__container container">
+      <div className="container">
         <div className="trainers__header">
-          <div className="trainers__heading">
-            <span className="section-label">Meet The Team</span>
+          <div>
+            <span className="section-label">MEET THE TEAM</span>
 
             <h2 className="section-title">
-              TRAIN WITH
-              <span> THE BEST.</span>
+              EXPERTS WHO
+              <span>MOVE YOU FORWARD.</span>
             </h2>
           </div>
 
           <p className="section-description">
-            Our certified trainers bring years of experience, proven techniques,
-            and genuine passion to every session. Whatever your goal, we are
-            here to help you reach it.
+            Our certified coaches bring experience, energy, and personalized
+            guidance to every training session.
           </p>
         </div>
 
         <div className="trainers__grid">
           {trainers.map((trainer) => (
-            <article className="trainer-card" key={trainer.id}>
-              <div className="trainer-card__image-wrapper">
-                <img
-                  className="trainer-card__image"
-                  src={trainer.image}
-                  alt={`${trainer.name}, ${trainer.role}`}
-                  loading="lazy"
-                />
-
-                <div className="trainer-card__overlay" />
+            <article className="trainer-card" key={trainer.name}>
+              <div className="trainer-card__image">
+                <img src={trainer.image} alt={trainer.name} loading="lazy" />
 
                 <span className="trainer-card__specialty">
                   {trainer.specialty}
                 </span>
-
-                <div className="trainer-card__socials">
-                  <a href="#contact" aria-label={`${trainer.name} Instagram`}>
-                    <Instagram size={17} />
-                  </a>
-
-                  <a href="#contact" aria-label={`${trainer.name} LinkedIn`}>
-                    <Linkedin size={17} />
-                  </a>
-                </div>
               </div>
 
               <div className="trainer-card__content">
-                <div className="trainer-card__top">
-                  <div>
-                    <h3>{trainer.name}</h3>
-                    <p>{trainer.role}</p>
-                  </div>
+                <span className="trainer-card__role">{trainer.role}</span>
 
-                  <span className="trainer-card__number">0{trainer.id}</span>
-                </div>
+                <h3>{trainer.name}</h3>
 
-                <div className="trainer-card__experience">
+                <div className="trainer-card__meta">
                   <Trophy size={16} />
                   <span>{trainer.experience}</span>
+                </div>
+
+                <div className="trainer-card__footer">
+                  <SocialLinks compact />
+
+                  <a href="#contact" aria-label={`Contact ${trainer.name}`}>
+                    <ArrowUpRight size={19} />
+                  </a>
                 </div>
               </div>
             </article>
@@ -109,23 +91,20 @@ function Trainers() {
         </div>
 
         <div className="trainers__cta">
-          <div className="trainers__cta-content">
-            <span className="section-label">Personal Coaching</span>
+          <div>
+            <span className="section-label">PERSONAL COACHING</span>
 
-            <h3>
-              READY TO TRAIN
-              <span> WITH PURPOSE?</span>
-            </h3>
+            <h3>READY TO TRAIN WITH A PRO?</h3>
 
             <p>
-              Get personalized guidance from a FitZone trainer and build a plan
-              designed around your goals.
+              Get personalized guidance designed around your goals, experience,
+              and lifestyle.
             </p>
           </div>
 
-          <a href="#membership" className="trainers__cta-button">
-            <span>Start Your Journey</span>
-            <ArrowUpRight size={19} strokeWidth={2.5} />
+          <a href="#contact" className="trainers__cta-button">
+            Talk To A Coach
+            <ArrowUpRight size={18} />
           </a>
         </div>
       </div>

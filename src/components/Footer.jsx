@@ -1,122 +1,103 @@
-import {
-  Dumbbell,
-  Instagram,
-  Facebook,
-  Youtube,
-  ArrowUpRight,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { ArrowUpRight, Dumbbell, Mail, MapPin, Phone } from "lucide-react";
+import SocialLinks from "./SocialLinks";
 import "./Footer.css";
-
-const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Trainers", href: "#trainers" },
-];
-
-const serviceLinks = [
-  { label: "Membership", href: "#membership" },
-  { label: "Schedule", href: "#schedule" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
-];
 
 function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="footer">
-      <div className="footer__main container">
-        <div className="footer__brand">
-          <a href="#home" className="footer__logo">
-            <span className="footer__logo-icon">
-              <Dumbbell size={24} strokeWidth={2.5} />
-            </span>
+      <div className="container">
+        <div className="footer__main">
+          <div className="footer__brand">
+            <a href="#home" className="footer__logo">
+              <span className="footer__logo-icon">
+                <Dumbbell size={22} />
+              </span>
 
-            <span className="footer__logo-text">
-              FIT<span>ZONE</span>
-            </span>
-          </a>
-
-          <p className="footer__description">
-            Train with purpose. Live with strength. FitZone is your complete
-            fitness destination for training, coaching, and community.
-          </p>
-
-          <a href="#membership" className="footer__cta">
-            <span>Start Your Journey</span>
-            <ArrowUpRight size={17} strokeWidth={2.5} />
-          </a>
-        </div>
-
-        <div className="footer__column">
-          <h3>Quick Links</h3>
-
-          <ul>
-            {quickLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="footer__column">
-          <h3>Explore</h3>
-
-          <ul>
-            {serviceLinks.map((link) => (
-              <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="footer__column footer__contact">
-          <h3>Get In Touch</h3>
-
-          <a href="mailto:hello@fitzone.com">
-            <Mail size={17} />
-            <span>hello@fitzone.com</span>
-          </a>
-
-          <a href="tel:+15551234567">
-            <Phone size={17} />
-            <span>+1 (555) 123-4567</span>
-          </a>
-
-          <a href="#contact">
-            <MapPin size={17} />
-            <span>125 Fitness Avenue</span>
-          </a>
-        </div>
-      </div>
-
-      <div className="footer__bottom">
-        <div className="footer__bottom-inner container">
-          <p>© {currentYear} FitZone. All rights reserved.</p>
-
-          <div className="footer__socials">
-            <a href="#contact" aria-label="Instagram">
-              <Instagram size={18} />
+              <span>FITZONE</span>
             </a>
 
-            <a href="#contact" aria-label="Facebook">
-              <Facebook size={18} />
+            <p className="footer__description">
+              Train harder, move better, and become the strongest version of
+              yourself with FitZone.
+            </p>
+
+            <a href="#membership" className="footer__cta">
+              Start Your Journey
+              <ArrowUpRight size={18} />
             </a>
 
-            <a href="#contact" aria-label="YouTube">
-              <Youtube size={18} />
-            </a>
+            <SocialLinks />
           </div>
 
+          <div className="footer__column">
+            <h3>Quick Links</h3>
+
+            <ul>
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#about">About</a>
+              </li>
+              <li>
+                <a href="#programs">Programs</a>
+              </li>
+              <li>
+                <a href="#trainers">Trainers</a>
+              </li>
+              <li>
+                <a href="#membership">Membership</a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer__column">
+            <h3>Explore</h3>
+
+            <ul>
+              <li>
+                <a href="#schedule">Class Schedule</a>
+              </li>
+              <li>
+                <a href="#testimonials">Testimonials</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
+              <li>
+                <a href="#membership">Join FitZone</a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="footer__column footer__contact">
+            <h3>Get In Touch</h3>
+
+            <a href="mailto:hello@fitzone.com">
+              <Mail size={18} />
+              <span>hello@fitzone.com</span>
+            </a>
+
+            <a href="tel:+15551234567">
+              <Phone size={18} />
+              <span>+1 (555) 123-4567</span>
+            </a>
+
+            <a href="#contact">
+              <MapPin size={18} />
+              <span>125 Fitness Avenue, Downtown</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="footer__bottom">
+          <p>© {currentYear} FitZone. All rights reserved.</p>
+
           <div className="footer__legal">
-            <a href="#contact">Privacy</a>
-            <a href="#contact">Terms</a>
+            <a href="#contact">Privacy Policy</a>
+            <a href="#contact">Terms of Service</a>
           </div>
         </div>
       </div>

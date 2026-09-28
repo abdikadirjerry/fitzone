@@ -1,184 +1,170 @@
 import { useState } from "react";
-import {
-  ArrowUpRight,
-  Clock3,
-  Instagram,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-} from "lucide-react";
+import { Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import SocialLinks from "../components/SocialLinks";
 import "./Contact.css";
-
-const initialForm = {
-  name: "",
-  email: "",
-  phone: "",
-  message: "",
-};
 
 const contactDetails = [
   {
     icon: MapPin,
-    label: "Visit Us",
-    value: "125 Fitness Avenue",
+    title: "Visit Us",
+    content: "125 Fitness Avenue",
     detail: "Downtown, Your City",
   },
   {
     icon: Phone,
-    label: "Call Us",
-    value: "+1 (555) 123-4567",
+    title: "Call Us",
+    content: "+1 (555) 123-4567",
     detail: "Mon–Sat, 6AM–10PM",
   },
   {
     icon: Mail,
-    label: "Email Us",
-    value: "hello@fitzone.com",
+    title: "Email Us",
+    content: "hello@fitzone.com",
     detail: "We reply within 24 hours",
   },
 ];
 
 const openingHours = [
-  { day: "Monday – Friday", hours: "6:00 AM – 10:00 PM" },
-  { day: "Saturday", hours: "7:00 AM – 8:00 PM" },
-  { day: "Sunday", hours: "8:00 AM – 6:00 PM" },
+  ["Monday – Friday", "6:00 AM – 10:00 PM"],
+  ["Saturday", "7:00 AM – 8:00 PM"],
+  ["Sunday", "8:00 AM – 6:00 PM"],
 ];
 
 function Contact() {
-  const [formData, setFormData] = useState(initialForm);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
-  const handleChange = (event) => {
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleChange(event) {
     const { name, value } = event.target;
 
     setFormData((current) => ({
       ...current,
       [name]: value,
     }));
+  }
 
-    if (isSubmitted) {
-      setIsSubmitted(false);
-    }
-  };
-
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
-    setIsSubmitted(true);
-    setFormData(initialForm);
-  };
+    setSubmitted(true);
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    });
+  }
 
   return (
     <section className="contact section" id="contact">
-      <div className="contact__container container">
+      <div className="container">
         <div className="contact__header">
-          <span className="section-label">Get In Touch</span>
+          <div>
+            <span className="section-label">GET IN TOUCH</span>
 
-          <h2 className="section-title">
-            LET'S BUILD
-            <span> SOMETHING STRONG.</span>
-          </h2>
+            <h2 className="section-title">
+              LET&apos;S START
+              <span>YOUR JOURNEY.</span>
+            </h2>
+          </div>
 
           <p className="section-description">
-            Have questions about memberships, training programs, or personal
-            coaching? Our team is ready to help you take the next step.
+            Have questions about membership, personal training, or our classes?
+            Our team is ready to help you take the next step.
           </p>
         </div>
 
-        <div className="contact__layout">
-          <div className="contact__left">
+        <div className="contact__grid">
+          <div className="contact__information">
             <div className="contact__details">
-              {contactDetails.map((detail) => {
-                const Icon = detail.icon;
-
-                return (
-                  <div className="contact-detail" key={detail.label}>
-                    <div className="contact-detail__icon">
-                      <Icon size={20} />
-                    </div>
-
-                    <div>
-                      <span>{detail.label}</span>
-                      <strong>{detail.value}</strong>
-                      <small>{detail.detail}</small>
-                    </div>
+              {contactDetails.map(({ icon: Icon, title, content, detail }) => (
+                <div className="contact__detail" key={title}>
+                  <div className="contact__detail-icon">
+                    <Icon size={21} />
                   </div>
-                );
-              })}
+
+                  <div>
+                    <span className="contact__detail-title">{title}</span>
+                    <strong>{content}</strong>
+                    <small>{detail}</small>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="contact__hours">
               <div className="contact__hours-header">
-                <Clock3 size={19} />
+                <Clock3 size={20} />
                 <h3>Opening Hours</h3>
               </div>
 
               <div className="contact__hours-list">
-                {openingHours.map((item) => (
-                  <div className="contact__hours-row" key={item.day}>
-                    <span>{item.day}</span>
-                    <strong>{item.hours}</strong>
+                {openingHours.map(([day, hours]) => (
+                  <div key={day}>
+                    <span>{day}</span>
+                    <strong>{hours}</strong>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="contact__social">
-              <span>Follow FitZone</span>
-
-              <div>
-                <a href="#contact" aria-label="Instagram">
-                  <Instagram size={18} />
-                </a>
-
-                <a href="#contact" aria-label="Facebook">
-                  <span>f</span>
-                </a>
-
-                <a href="#contact" aria-label="TikTok">
-                  <span>t</span>
-                </a>
-              </div>
+              <span>FOLLOW FITZONE</span>
+              <SocialLinks compact />
             </div>
           </div>
 
           <div className="contact__form-wrapper">
-            <div className="contact__form-header">
-              <div>
-                <span className="section-label">Send A Message</span>
-                <h3>WE'RE HERE TO HELP.</h3>
-              </div>
-
-              <Send size={24} />
-            </div>
-
-            {isSubmitted ? (
+            {submitted ? (
               <div className="contact__success">
                 <div className="contact__success-icon">
-                  <Send size={25} />
+                  <MessageCircle size={30} />
                 </div>
 
-                <h3>Message Sent!</h3>
+                <span className="section-label">MESSAGE SENT</span>
+
+                <h3>THANK YOU!</h3>
 
                 <p>
-                  Thanks for reaching out. Our team will get back to you as soon
-                  as possible.
+                  Your message has been received. Our team will get back to you
+                  within 24 hours.
                 </p>
 
-                <button type="button" onClick={() => setIsSubmitted(false)}>
+                <button
+                  type="button"
+                  className="contact__reset"
+                  onClick={() => setSubmitted(false)}
+                >
                   Send Another Message
                 </button>
               </div>
             ) : (
               <form className="contact__form" onSubmit={handleSubmit}>
+                <div className="contact__form-header">
+                  <span className="section-label">SEND A MESSAGE</span>
+
+                  <h3>WE&apos;RE HERE TO HELP.</h3>
+
+                  <p>
+                    Fill out the form and a member of our team will contact you.
+                  </p>
+                </div>
+
                 <div className="contact__form-row">
                   <label>
-                    <span>Your Name</span>
+                    <span>Full Name</span>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="John Doe"
+                      placeholder="Your name"
                       required
                     />
                   </label>
@@ -190,7 +176,7 @@ function Contact() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="john@example.com"
+                      placeholder="you@example.com"
                       required
                     />
                   </label>
@@ -208,43 +194,24 @@ function Contact() {
                 </label>
 
                 <label>
-                  <span>Your Message</span>
+                  <span>Message</span>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us how we can help..."
-                    rows="5"
+                    placeholder="How can we help?"
+                    rows="6"
                     required
                   />
                 </label>
 
                 <button type="submit" className="contact__submit">
-                  <span>Send Message</span>
-                  <ArrowUpRight size={18} />
+                  Send Message
+                  <MessageCircle size={18} />
                 </button>
               </form>
             )}
           </div>
-        </div>
-
-        <div className="contact__location">
-          <div className="contact__location-content">
-            <div className="contact__location-icon">
-              <MapPin size={23} />
-            </div>
-
-            <div>
-              <span className="section-label">Find Us</span>
-              <h3>125 FITNESS AVENUE</h3>
-              <p>Downtown, Your City</p>
-            </div>
-          </div>
-
-          <a href="#contact">
-            Get Directions
-            <ArrowUpRight size={18} />
-          </a>
         </div>
       </div>
     </section>
